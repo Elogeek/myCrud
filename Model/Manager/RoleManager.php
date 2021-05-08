@@ -27,25 +27,6 @@ class RoleManager
         return $role;
     }
 
-    /**
-     * Return true if the role is deletable ( not the default roles ).
-     * @param string $roleName
-     * @return bool
-     */
-    public static function isDeletable(string $roleName): bool
-    {
-        return !in_array($roleName, ['admin']);
-    }
-
-    /**
-     * @param Role $role
-     * @return bool
-     */
-    public static function isEditable(Role $role): bool
-    {
-        return self::isDeletable($role->getName());
-    }
-
 
     /**
      * Return true if user is admin.
