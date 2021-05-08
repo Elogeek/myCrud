@@ -27,8 +27,10 @@ class DB
      * @return PDO|null
      */
     public static function getInstance(): ?PDO {
-        if(null === self::$dbInstance) {
-            new self();
+        if (isset(self::$dbInstance)) {
+            if(null === self::$dbInstance) {
+                new self();
+            }
         }
         return self::$dbInstance;
     }
