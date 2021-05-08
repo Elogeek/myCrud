@@ -18,7 +18,7 @@ class ArticleManager {
     /**
      * Return all article
      */
-    public function getAll(): array {
+    public function readArticle(): array {
         $articles = [];
         $request = DB::getInstance()->prepare("SELECT * FROM article");
         $result = $request->execute();
@@ -36,7 +36,7 @@ class ArticleManager {
      * @param $id
      * @return Article
      */
-    public function get($id): ?Article {
+    public function getMyArticle($id): ?Article {
         $request = DB::getInstance()->prepare("SELECT * FROM article WHERE id = :id");
         $request->bindValue(':id', $id);
         $result = $request->execute();
@@ -54,7 +54,7 @@ class ArticleManager {
      * @param Article $article
      * @return bool
      */
-    public function add(Article $article): bool {
+    public function addArticle(Article $article): bool {
         $request = DB::getInstance()->prepare("
             INSERT INTO article (content, title, date, author_fk)
                 VALUES (:content, :title, :date, :author) 
@@ -72,7 +72,7 @@ class ArticleManager {
      * @param Article $article
      * @return bool
      */
-    public function update(Article $article): bool {
+    public function updateArticle(Article $article): bool {
         $request = DB::getInstance()->prepare("UPDATE article SET content = :content, title = :title, date = :date WHERE id = :id");
         $request->bindValue(':content', $article->getContent());
         $request->bindValue(':title', $article->getTitle());
@@ -87,7 +87,7 @@ class ArticleManager {
      * @param Article $article
      * @return bool
      */
-    public function delete(Article $article): bool {
+    public function deleteArticle(Article $article): bool {
         $request = DB::getInstance()->prepare("DELETE FROM article WHERE id = :id");
         $request->bindValue(':id', $article->getId());
 

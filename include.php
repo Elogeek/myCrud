@@ -7,6 +7,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/Model/Entity/Role.php';
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/Model/Manager/ArticleManager.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/Model/Manager/UserManager.php';
-
+require_once $_SERVER['DOCUMENT_ROOT'] .'/Model/Manager/RoleManager.php';
 
 

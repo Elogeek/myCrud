@@ -4,7 +4,7 @@ use Model\Manager\ArticleManager;
 use Model\User\UserManager;
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/include.php';
-$_SESSION('admin');
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -17,52 +17,56 @@ $_SESSION('admin');
 </head>
 <body>
     <div class="container">
-        <input type="text" placeholder="rédiger un commentaire">
-        <button type="submit"> Envoyer mon com !</button>
+        <input type="text" placeholder="title">
+        <input type="text" placeholder="rédiger un article">
+        <button type="submit"> Editer mon article !</button>
     </div>
+    <script src="api/article.js"></script>
 </body>
 </html>
 
 <?php
-if(isset($_GET['Manager'])) {
-    switch($_GET['Manager']) {
+
+if (isset($_GET['controller'])) {
+    switch ($_GET['controller']) {
         case 'articles':
             $manager = new ArticleManager();
 
-            if(isset($_GET['action'])) {
-                switch($_GET['action']) {
+            if (isset($_GET['action'])) {
+                switch ($_GET['action']) {
                     case 'new' :
-                        $manager->add();
+                        $manager->addArticle();
                         break;
 
                     case 'read':
-                        $manager->getAll();
+                        if (isset($_GET['article'])) {
+                            $manager->readArticle();
+                        }
                         break;
 
                     case 'update':
-                        if(isset($_GET['article'])) {
-                            $manager->update($_GET['article']);
-                        }
-                        else {
-                            $manager->update();
+                        if (isset($_GET['article'])) {
+                            $manager->updateArticle($_GET['article']);
+                        } else {
+                            $manager->updateArticle();
                         }
                         break;
 
                     case 'delete':
-                        $manager->delete();
+                        $manager->deleteArticle();
                         break;
 
                     default:
                         break;
                 }
             }
-            break;
 
+            break;
 
         case 'user':
             $manager = new UserManager();
 
-            if(isset($_GET['action'])) {
+            if (isset($_GET['action'])) {
                 switch ($_GET['action']) {
                     case 'login':
                         $manager->login();
@@ -72,6 +76,10 @@ if(isset($_GET['Manager'])) {
                         $manager->create();
                         break;
 
+                    case 'logout':
+                        $manager->logOut();
+                        break;
+
                     default:
                         break;
                 }
@@ -79,7 +87,12 @@ if(isset($_GET['Manager'])) {
             break;
 
        }
-   }
 
-//todo request ajax pour récupérer le contenu de l'article
+    }
+else {
+    header('location=index.php');
+}
+//todo request ajax pour récupérer le contenu de l'article (TITLE, CONTENT )
+// connect user
+// page admin?!
 ?>

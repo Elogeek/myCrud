@@ -7,8 +7,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/include.php';
 /**
  * Class RolesManager
  */
-class RoleManager
-{
+class RoleManager {
 
     /**
      * Return a Role object based on a given role id.
@@ -27,7 +26,6 @@ class RoleManager
         return $role;
     }
 
-
     /**
      * Return true if user is admin.
      * @param User $user
@@ -37,6 +35,7 @@ class RoleManager
     {
         return $user->getRole()->getId() && $user->getRole()->getName() === 'admin';
     }
+
 }
 
 

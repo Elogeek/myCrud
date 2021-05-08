@@ -1,7 +1,6 @@
 <?php
 
-class DB
-{
+class DB {
     private string $host = 'localhost';
     private string $db = 'projet_back';
     private string $user = 'root';
@@ -35,9 +34,8 @@ class DB
         return self::$dbInstance;
     }
 
-    /** My homemade functions :)
-     * Return string to have secure data to insert into the database.
-     * the secureData fct returns secure data and insert it into the database.
+    /** My homemade functions ;)
+     * Return string to have secure data to insert into the BDD.
      * @param $data
      * @return string
      */
@@ -51,7 +49,7 @@ class DB
     }
 
     /**
-     * Return secure int to have secure data to insert into the database.
+     * Return secure int to have secure data to insert into the BDD.
      * @param $data
      * @return int
      */
