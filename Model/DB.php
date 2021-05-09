@@ -1,5 +1,10 @@
 <?php
 
+namespace Model;
+
+use PDO;
+use PDOException;
+
 class DB {
     private string $host = 'localhost';
     private string $db = 'projet_back';
@@ -26,11 +31,10 @@ class DB {
      * @return PDO|null
      */
     public static function getInstance(): ?PDO {
-        if (isset(self::$dbInstance)) {
-            if(null === self::$dbInstance) {
-                new self();
-            }
+        if(null === self::$dbInstance) {
+            new self();
         }
+
         return self::$dbInstance;
     }
 

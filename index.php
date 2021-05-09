@@ -1,9 +1,13 @@
 <?php
 
+use Controller\ArticleController;
 use Model\Manager\ArticleManager;
 use Model\User\UserManager;
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/include.php';
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 ?>
 <!doctype html>
@@ -17,9 +21,11 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/include.php';
 </head>
 <body>
     <div class="container">
-        <input type="text" placeholder="title">
-        <input type="text" placeholder="rédiger un article">
-        <button type="submit"> Editer mon article !</button>
+        <form action="index.php?controller=articles&action=new" method="post">
+            <input type="text" placeholder="title" name="title">
+            <input type="text" placeholder="rédiger un article" name="content">
+        <button type="submit"> Envoyer mon article !</button>
+        </form>
     </div>
     <script src="api/article.js"></script>
 </body>
@@ -30,35 +36,33 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/include.php';
 if (isset($_GET['controller'])) {
     switch ($_GET['controller']) {
         case 'articles':
-            $manager = new ArticleManager();
+            $controller = new ArticleController();
 
-            if (isset($_GET['action'])) {
-                switch ($_GET['action']) {
-                    case 'new' :
-                        $manager->addArticle();
-                        break;
+            switch ($_GET['action']) {
+                case 'new' :
+                    $controller->addNew($_POST);
+                    break;
 
-                    case 'read':
-                        if (isset($_GET['article'])) {
-                            $manager->readArticle();
-                        }
-                        break;
+                case 'read':
+                    if (isset($_GET['article'])) {
+                        //$manager->readArticle();
+                    }
+                    break;
 
-                    case 'update':
-                        if (isset($_GET['article'])) {
-                            $manager->updateArticle($_GET['article']);
-                        } else {
-                            $manager->updateArticle();
-                        }
-                        break;
+                case 'update':
+                    if (isset($_GET['article'])) {
+                        //$manager->updateArticle($_GET['article']);
+                    } else {
+                        //$manager->updateArticle();
+                    }
+                    break;
 
-                    case 'delete':
-                        $manager->deleteArticle();
-                        break;
+                case 'delete':
+                    // $manager->deleteArticle();
+                    break;
 
-                    default:
-                        break;
-                }
+                default:
+                    break;
             }
 
             break;
@@ -69,11 +73,11 @@ if (isset($_GET['controller'])) {
             if (isset($_GET['action'])) {
                 switch ($_GET['action']) {
                     case 'login':
-                        $manager->login();
+                        $manager->login("");
                         break;
 
                     case 'create':
-                        $manager->create();
+                        $manager->create("John");
                         break;
 
                     case 'logout':
@@ -90,7 +94,7 @@ if (isset($_GET['controller'])) {
 
     }
 else {
-    header('location=index.php');
+    // Créer un home controller qui ne fait que afficher la vue home.
 }
 //todo request ajax pour récupérer le contenu de l'article (TITLE, CONTENT )
 // connect user

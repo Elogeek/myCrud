@@ -2,19 +2,11 @@
 
 namespace Model\Manager;
 
-use DB;
+use Model\DB;
 use Model\Entity\Article;
-use PDO;
 
 class ArticleManager {
-    /**
-     * @var PDO|null
-     */
-    private ?PDO $db;
-    /** ArticleManager constructor*/
-    public function __construct() {
-        $this->db = DB::getInstance();
-    }
+
     /**
      * Return all article
      */
@@ -36,7 +28,7 @@ class ArticleManager {
      * @param $id
      * @return Article
      */
-    public function getMyArticle($id): ?Article {
+    public function getArticle($id): ?Article {
         $request = DB::getInstance()->prepare("SELECT * FROM article WHERE id = :id");
         $request->bindValue(':id', $id);
         $result = $request->execute();
@@ -55,15 +47,15 @@ class ArticleManager {
      * @return bool
      */
     public function addArticle(Article $article): bool {
+        // Construction de l'objet article en fonction du formulaire.
         $request = DB::getInstance()->prepare("
-            INSERT INTO article (content, title, date, author_fk)
-                VALUES (:content, :title, :date, :author) 
+            INSERT INTO article (content, title, author_fk)
+                VALUES (:content, :title, :author) 
         ");
+        echo 'hello';
         $request->bindValue(':content', $article->getContent());
         $request->bindValue(':title', $article->getTitle());
-        $request->bindValue(':date', $article->getDate());
         $request->bindValue(':author', $article->getAuthorFk());
-
         return $request->execute() && DB::getInstance()->lastInsertId() != 0;
     }
 
@@ -73,10 +65,9 @@ class ArticleManager {
      * @return bool
      */
     public function updateArticle(Article $article): bool {
-        $request = DB::getInstance()->prepare("UPDATE article SET content = :content, title = :title, date = :date WHERE id = :id");
+        $request = DB::getInstance()->prepare("UPDATE article SET content = :content, title = :title WHERE id = :id");
         $request->bindValue(':content', $article->getContent());
         $request->bindValue(':title', $article->getTitle());
-        $request->bindValue(':date', $article->getDate());
         $request->bindValue(':id', $article->getId());
 
         return $request->execute();
