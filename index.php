@@ -81,6 +81,5 @@ if ($username["Elodie"]->getAdmin($id) === 1) {
     $controller->gotoAdminPage();
 }
 
-//todo request ajax pour récupérer le contenu de l'article (TITLE, CONTENT )
-// connect user
+
 

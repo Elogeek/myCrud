@@ -6,6 +6,4 @@ class HomeController {
         require_once './View/home.php';
     }
 
-
-
 }

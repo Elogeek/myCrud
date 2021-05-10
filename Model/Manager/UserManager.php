@@ -2,7 +2,9 @@
 
 namespace Model\User;
 
-use DB;
+use Model\DB;
+use PDOException;
+use PDO;
 use Model\Entity\User;
 use RoleManager;
 use Model\Manager\Traits\ManagerTrait;

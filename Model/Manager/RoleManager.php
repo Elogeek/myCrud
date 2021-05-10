@@ -1,5 +1,6 @@
 <?php
 
+use Model\DB;
 use Model\Entity\Role;
 use Model\Entity\User;
 
