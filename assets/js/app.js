@@ -9,8 +9,8 @@ $(".btnShare").click(function(){
 /**
  * Sending article
  */
-let sendArticleButn = document.getElementById('sendArticle');
-sendArticleButn.addEventListener('click', function(e) {
+let sendArticle = document.getElementById('sendArticle');
+sendArticle.addEventListener('click', function(e) {
     e.preventDefault();
     const xhr = new XMLHttpRequest();
     xhr.onload = function () {
@@ -23,7 +23,10 @@ sendArticleButn.addEventListener('click', function(e) {
     };
 
     const data = {
-        'article': document.querySelector('#artclToSend').value
+        'article': document.querySelector('.sendArticle').value,
+        'title': document.querySelector('.artclTitle').value,
+        'content' : document.querySelector('.artclContent').value;
+
     }
 
     xhr.open('POST', '/api/article.php');

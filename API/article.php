@@ -22,14 +22,16 @@ switch($requestType) {
         $articles = $manager->getArticle();
         $response = [];
         foreach($articles as $article) {
-            $user = $userManager->getUser($article->getAuthorFk());
+            $user = $userManager-> $article->getAuthorFk();
             if($user->getId()) {
                 $response[] = [
                     'id' => $article->getId(),
-                    'date' => (new \DateTime($article->getDate()))->format("\L\\e d-m-y à H:i"),
-                    'user' => $user->getUsername(),
+                    'content' => $article->getContent(),
                     'title'=> $article->getTitle(),
-                    'content' => $article->getContent()
+                    'date' => (new \DateTime($article->getDate()))->format("\L\\e d-m-y à H:i"),
+                    'user' => $user->getAuthorFk(),
+
+
                 ];
             }
         }
@@ -38,10 +40,7 @@ switch($requestType) {
 
     // Ajout d'un article.
     case 'POST':
-        $user = new User();
-        $user->setId($_SESSION['id']);
-        $user->setUsername($_SESSION['username']);
-        $result = $manager->sendArticles($data->article, $user);
+
         if(!$result) {
             echo json_encode(["error" => "Erreur d'envoi de l'article"]);
         }

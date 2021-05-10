@@ -20,7 +20,7 @@ if (isset($data->email) && isset($data->password)) {
     if($user_data) {
         // check that the encrypted password on my database
         // that i recovered with '$user['password']' matches the password entered by the user
-        if (DB::checkPassword($password, $user_data['password'])) {
+        if (DB::checkPassword($password === $user_data['password'])) {
             //If the two passwords match, then the user can connect so (===> store user data in a session.)
             session_start();
             $_SESSION['id'] = $user_data['id'];

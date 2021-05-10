@@ -1,8 +1,8 @@
-<div class="container">
+<div class="containerArticle">
         <form action="/index.php?controller=articles&action=new" method="post">
-            <input type="text" placeholder="title" name="title">
-            <input type="text" placeholder="rédiger un article" name="content">
-        <button type="submit"> Envoyer mon article !</button>
+            <input class="artclTitle" type="text" placeholder="title" name="title">
+            <input class="artclContent" type="text" placeholder="rédiger un article" name="content">
+        <button type="submit" id="sendArticle"> Envoyer mon article !</button>
         </form>
     </div>
 
