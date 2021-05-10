@@ -1,8 +1,3 @@
-<?php
-require_once $_SERVER ['DOCUMENT_ROOT'] . 'include.php';
-
-?>
-
 <div class="container">
         <form action="/index.php?controller=articles&action=new" method="post">
             <input type="text" placeholder="title" name="title">

@@ -14,7 +14,7 @@ class RoleManager {
      * @param int $id
      * @return Role
      */
-    public function get($id): ?Role {
+    public function getAdmin($id): ?Role {
         $role = null;
         $request = DB::getInstance()->prepare("Select * FROM role WHERE id = :id");
         $request->bindValue(':id', $id);

@@ -3,7 +3,7 @@
 use Controller\ArticleController;
 use Model\Manager\ArticleManager;
 use Model\User\UserManager;
-
+use Model\Entity\Role;
 require_once $_SERVER['DOCUMENT_ROOT'] . '/include.php';
 
 error_reporting(E_ALL);
@@ -53,7 +53,7 @@ if (isset($_GET['controller'])) {
                         break;
 
                     case 'create':
-                        $manager->create("John");
+                        $manager->create("");
                         break;
 
                     case 'logout':
@@ -75,7 +75,7 @@ else{
     $controller->index();
 }
 //if admin ===>page admin
-if ($username["Elodie"]->getAdmin() === 1) {
+if ($username["Elodie"]->getAdmin($id) === 1) {
     session_start();
     $controller = new AdminController();
     $controller->gotoAdminPage();
