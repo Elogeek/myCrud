@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Model\Manager\Traits;
 
 trait ManagerTrait {
