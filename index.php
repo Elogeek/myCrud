@@ -95,6 +95,8 @@ if (isset($_GET['controller'])) {
     }
 else {
     // Créer un home controller qui ne fait que afficher la vue home.
+    $controller = new HomeController();
+    $controller->index();
 }
 //todo request ajax pour récupérer le contenu de l'article (TITLE, CONTENT )
 // connect user

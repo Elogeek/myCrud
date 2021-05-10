@@ -10,4 +10,5 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/Model/Manager/UserManager.php';
 require_once $_SERVER['DOCUMENT_ROOT'] .'/Model/Manager/RoleManager.php';
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/Controller/ArticleController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Controller/HomeController.php';
 
