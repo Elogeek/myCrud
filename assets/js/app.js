@@ -14,7 +14,7 @@ sendArticle.addEventListener('click', function(e) {
     e.preventDefault();
     const xhr = new XMLHttpRequest();
     xhr.onload = function () {
-        // On vérifie si un message d'erreur est present.
+        //check error message
         if(xhr.responseText) {
             const error = JSON.parse(xhr.responseText);
             alert(error);
@@ -25,7 +25,7 @@ sendArticle.addEventListener('click', function(e) {
     const data = {
         'article': document.querySelector('.sendArticle').value,
         'title': document.querySelector('.artclTitle').value,
-        'content' : document.querySelector('.artclContent').value;
+        'content' : document.querySelector('.artclContent').value,
 
     }
 
